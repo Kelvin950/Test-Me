@@ -1,24 +1,39 @@
-import logo from './logo.svg';
-import './App.css';
-
+import { Fragment } from 'react';
+import {Route , Redirect , Switch}  from 'react-router-dom'
+import   Quiz from './pages/Quiz';
+import Home from './pages/Home';
+import Settings from './pages/Settings';
+import Navbar from './components/Navbar'
 function App() {
+
+  
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Fragment>
+<Navbar/>
+       <Switch>
+       <Route path="/" exact>
+         <Redirect to="/home">
+
+         </Redirect>
+       </Route>
+         <Route path="/home"  exact>
+              <Home/>
+         </Route>
+         <Route path="/quiz"  exact>
+              <Quiz/>
+              </Route>
+              <Route path="/settings"  exact>
+              <Settings/>
+              </Route>
+              <Route path="*"  >
+               
+              </Route>
+       </Switch>
+ 
+
+ 
+    </Fragment>
+  
   );
 }
 
