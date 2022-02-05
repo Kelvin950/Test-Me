@@ -2,7 +2,11 @@ import  {createSlice} from '@reduxjs/toolkit'
 
 const initialState={
 
-    clicked:false
+    clicked:false,
+    loader:{
+        status:'',
+        message:''
+    }
 
 }
 
@@ -12,6 +16,14 @@ const uiSlice =  createSlice({
     reducers:{
         clik(state){
              state.clicked =  !state.clicked;
+        } ,
+        showLoader(state ,action){
+          
+            state.loader =  {
+                status:action.payload.status,
+                message:action.payload.message
+            }
+
         }
     }
 })

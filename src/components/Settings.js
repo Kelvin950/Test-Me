@@ -41,7 +41,7 @@ e.preventDefault();
                     <option value="medium">
                         Medium
                     </option>
-                    <option value="Hard">
+                    <option value="hard">
                             Hard
                     </option>
                 </select>
@@ -58,7 +58,7 @@ e.preventDefault();
                         15
                     </option>
                     <option value="10">
-                            15
+                            10
                     </option>
                 </select>
 

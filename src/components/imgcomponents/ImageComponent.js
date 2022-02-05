@@ -5,7 +5,7 @@ const history  = useHistory();
     function onClickHandler (){
          history.push({
              pathname:`/quiz`,
-             search:`?type=${props.name}`
+             search:`?type=${props.name}${props.dataCategory}`
          })
 
     }

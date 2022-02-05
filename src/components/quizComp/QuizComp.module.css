@@ -1,0 +1,19 @@
+.questions{
+   
+    padding: 10px;
+ 
+    
+ margin: 1.4rem;
+ font-size: 20px;
+ font-weight: bold;
+ 
+     font-family: 'Times New Roman', Times, serif;
+     color:#fff ;
+}
+
+.answer label{
+    display: block;
+    margin: 1rem;
+    margin-left: 2.6rem;
+   
+}

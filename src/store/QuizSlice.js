@@ -4,6 +4,7 @@ import {createSlice} from '@reduxjs/toolkit';
 const initialState =  {
     difficulty:"easy",
     amount:"10",
+    questions:[]
 }
 
 const quizSlice=  createSlice({
@@ -18,6 +19,9 @@ initialState,
         ,
         changeAmount(state ,action){
             state.amount =  action.payload
+        },
+        setQuestions(state , actions){
+            state.questions.push(...actions.payload);
         }
     }
 })
