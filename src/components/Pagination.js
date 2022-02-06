@@ -1,7 +1,7 @@
 import {useSelector , useDispatch} from 'react-redux';
 import {paginationActions} from '../store/pagination'
 
-function Pagination({totalQuestions ,postperPage ,paginate}) {
+function Pagination() {
     const currentPage =  useSelector(state=>state.pagination.currentPage); 
     const trunc = useSelector(state=>state.quiz.trunc);
     const dispatch =  useDispatch();
@@ -16,7 +16,7 @@ function Pagination({totalQuestions ,postperPage ,paginate}) {
 }
 
     return (  
-        <nav>
+        <nav className="middle">
             <ul className="pagination">
                 
             {

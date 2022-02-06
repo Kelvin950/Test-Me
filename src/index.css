@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Supermercado+One&display=swap');
 * {
   box-sizing: border-box;
 }
@@ -25,3 +26,12 @@ text-align: center;
 }
 
 
+.middle {
+  width: 50%;
+  margin: 0 auto;
+}
+
+.logo{
+  font-family: 'Supermercado One', cursive;
+   color: black;
+}

@@ -17,7 +17,8 @@ const Navbar  = ()=>{
     <div className= {classes["nav-center"]}>
   
       <div className={classes["nav-header"]}>
-        <img src="" className="logo" alt="logo" />
+    
+        <h1 className="logo"><i class="fas fa-brain"></i>TEST ME</h1>
         <button className={classes["nav-toggle"]} onClick={onClickHandler}>
           <i className="fas fa-bars"></i>
         </button>

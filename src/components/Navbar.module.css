@@ -64,6 +64,7 @@
   }
   .logo {
     height: 40px;
+    color: black;
   }
   .links a {
     color: var(--clr-grey-3);

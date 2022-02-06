@@ -1,6 +1,6 @@
 import Main from './main/Main';
 import  {useDispatch ,useSelector}  from 'react-redux';
-import  {useState} from 'react';
+import  {useEffect, useState} from 'react';
 import  {quizActions} from '../store/QuizSlice';
 
 function Settings() {
@@ -9,6 +9,7 @@ function Settings() {
 const {  difficulty,
     amount} =  useSelector(state=>state.quiz)
 const [changeDifficulty ,setChangeDifficulty] =  useState(difficulty);
+const [show , setShow] =  useState(false);
 const [changeAmount ,setChangeAmount] =  useState(amount);
 
 const dispatch =  useDispatch();
@@ -27,6 +28,23 @@ const onchangeAmountHandler = (e)=>{
 
 }
 
+
+ useEffect(()=>{
+
+     const id=setInterval(()=>{
+         
+        if(show){
+            setShow(false);
+        }
+
+    } ,2000);
+
+
+    return ()=>{
+        clearInterval(id)
+    }
+ },[show ,setShow])
+
 const onSubmitHandler =(e)=>{
 e.preventDefault();
 console.log(e.target.amount.value);
@@ -35,11 +53,12 @@ console.log(e.target.difficulty.value);
     dispatch(quizActions.changeDifficulty(e.target.difficulty.value.trim()));
   localStorage.setItem("diff", e.target.difficulty.value.trim());
     localStorage.setItem("amount" , e.target.amount.value.trim());
-
+         setShow(true);
     
 } 
     return ( 
         <Main>
+       {show &&  <h1>Done</h1>}
         <form  onSubmit={onSubmitHandler}>
             <div className="mb-3 mt-3">
             <label htmlFor="difficulty">Difficulty</label>

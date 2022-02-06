@@ -12,7 +12,7 @@ const onClickHandler=()=>{
     dispatch(paginationActions.showScore());
 }
     return ( 
-        <div>
+        <div className="middle">
             <button onClick={onClickHandler} className="btn btn-primary" >
                 Submit
             </button>
