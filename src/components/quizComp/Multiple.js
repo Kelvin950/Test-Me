@@ -6,7 +6,7 @@ function Multiple({question ,index}) {
            
  
          <div className={classes.questions} >
-            {question.id}. {question.question}
+            {question.id + 1}. {question.question}
        
          <div className={classes.answer}>
              {question.incorrect_answers.map((q , i)=>{

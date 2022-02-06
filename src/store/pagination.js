@@ -5,7 +5,8 @@ import {createSlice} from '@reduxjs/toolkit';
 const initialState={
     
     currentPage:1,
-    questionsPerPage:5
+    questionsPerPage:5,
+    ShowScore:false
 }
 
 const paginationSlice = createSlice({
@@ -21,6 +22,12 @@ const paginationSlice = createSlice({
         },
         showPrevSlide(state){
             --state.currentPage;
+        },
+        setCurrentpPage(state){
+            state.currentPage= 1;
+        },
+        showScore(state){
+            state.ShowScore =  !state.ShowScore;
         }
     }
 }) ;

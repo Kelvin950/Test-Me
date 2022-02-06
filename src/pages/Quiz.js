@@ -6,9 +6,11 @@ import {useSelector , useDispatch} from 'react-redux';
 import Loader from '../components/main/Loader/Loader'
 import  {fetchQuestions} from '../store/quizActions';
 import Pagination from '../components/Pagination';
-import {paginationActions}  from '../store/pagination'
+import {paginationActions}  from '../store/pagination';
+import ShowScore from '../components/ShowScore';
+import Submit from '../components/Sumbit';
  const Quiz =  ()=> {
-
+    const score = useSelector(state=>state.quiz.scores);
     const location =  useLocation();
 console.log(location.search);
 const category=(location.search.slice(location.search.length-2 ,location.search.length));
@@ -18,7 +20,8 @@ const loader=  useSelector(state =>state.ui.loader);
 const  questions =  useSelector(state=>state.quiz.questions);
 const trunc = useSelector(state=>state.quiz.trunc);
 const currentPage =  useSelector(state=>state.pagination.currentPage)
-const postperPage =  useSelector(state=>state.pagination.questionsPerPage)
+const postperPage =  useSelector(state=>state.pagination.questionsPerPage);
+const showModal =  useSelector(state=>state.pagination.ShowScore);
 const dispatch =  useDispatch();
 const url =  `https://opentdb.com/api.php?amount=${amount}&category=${category}&difficulty=${difficulty}&encode=base64`;
 console.log(loader);
@@ -45,8 +48,8 @@ console.log(currentPage);
        }
 
        if(loader.status === "failed"){
-           return <div style={{color:'white'}}>
-               failed
+           return <div className="error">
+              No network connection!
            </div>
        }
      
@@ -59,6 +62,8 @@ console.log(currentPage);
     </div>
          {/* <QuizComp questions={questions}/> */}
      <Pagination totalQuestions={questions.length} checked="true" postperPage={postperPage} paginate={paginate} /> 
+    {currentPage === trunc.length && <Submit/>}
+  {showModal &&   <ShowScore url={url}  score={score} length={questions.length}/>}
      </Fragment>   
         
     

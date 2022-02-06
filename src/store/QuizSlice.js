@@ -2,11 +2,12 @@ import {createSlice} from '@reduxjs/toolkit';
 
 
 const initialState =  {
-    difficulty:"easy",
-    amount:"10",
+    difficulty:localStorage.getItem("diff") || "easy",
+    amount:localStorage.getItem("amount") || "10",
     questions:[],
     scores:0,
-    trunc:[]
+    trunc:[],
+    userAnswers:[]
 }
 
 const quizSlice=  createSlice({
@@ -23,6 +24,7 @@ initialState,
             state.amount =  action.payload
         },
         setQuestions(state , actions){
+            state.scores =  0;
             state.questions= actions.payload
         },
         increaseScore(state){
@@ -35,7 +37,7 @@ initialState,
                 state.scores =0;
             }
             else{
-                state.scores--;
+                --state.scores;
             }
         },
         fillTrucn(state){
@@ -43,12 +45,36 @@ initialState,
             
           for(let i = 0 ;i<state.questions.length/5 ;i++){
                      state.trunc.push(0);
+                    }
+                  
+
+          },
+          fillUserAnswers(state){
+            state.userAnswers.splice(0 , state.userAnswers.length);
+            for(let i = 0 ;i<state.questions.length ;i++){
+                state.userAnswers.push(0);
+               }
+          },
+
+          setAnswer(state  ,actions){
+ 
+            state.userAnswers[actions.payload.index] = actions.payload.value;
+            
+          },
+          submit(state){
+              for(let i = 0 ; i<state.userAnswers.length;i++){
+                  if(state.userAnswers[i] === state.questions[i].correct_answer){
+                      state.scores++;
+                  }
+              }
           }
+
+          
              
         }
 
     }
-})
+)
 
 export const quizActions =  quizSlice.actions ; 
 

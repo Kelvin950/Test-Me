@@ -1,6 +1,7 @@
 
 import {uiActions} from './ui'
-import  {quizActions} from './QuizSlice'
+import  {quizActions} from './QuizSlice';
+import {paginationActions} from './pagination'
  export const fetchQuestions =  (url)=>{
 console.log(url);
     return async dispatch=>{
@@ -37,15 +38,24 @@ console.log(url);
                question:atob(question.question),
                category:atob(question.category),
                correct_answer:atob(question.correct_answer),
-               incorrect_answers:question.incorrect_answers.map(i=>atob(i)),
+               incorrect_answers:question.incorrect_answers.map(answers=>{
+                   return {
+                       id:Math.random(),
+                       answers:answers
+                   }
+               }).sort((a,b)=>{
+                   return a.id - b.id
+               }).map(answers=>answers.answers).map(i=>atob(i)),
                difficulty:atob(question.difficulty),
                type:atob(question.type),
-               id:++index
+               id:index
            }
        }));
     
        dispatch(quizActions.setQuestions(resolvedQuestions))
               dispatch(quizActions.fillTrucn());
+              dispatch(quizActions.fillUserAnswers());
+              dispatch(paginationActions.setCurrentpPage());
        dispatch(uiActions.showLoader({
            status:"successful",
            message:''

@@ -1,15 +1,15 @@
-import {useDispatch  ,useSelector} from 'react-redux';
+import {useDispatch  } from 'react-redux';
 import  {quizActions} from '../../store/QuizSlice';
 function Possible({name ,value ,answer}) {
 
-const dispatch =  useDispatch()
-const scores =  useSelector(state=>state.quiz.scores)
+const dispatch =  useDispatch();
+
     const checkAnswer = ()=>{
-        if(value=== answer){
-            dispatch(quizActions.increaseScore());
-             console.log(scores);
-        }
+        
+        dispatch(quizActions.setAnswer({index:name , value:value}));
+      
     }
+   
     return (
           
 
