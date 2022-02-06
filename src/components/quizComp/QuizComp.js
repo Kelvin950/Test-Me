@@ -1,17 +1,21 @@
 
 import Multiple from './Multiple'
 import Main from '../main/Main'
-function QuizComp({questions}) {
+import { Fragment } from 'react';
+import classes from './QuizComp.module.css'
+function QuizComp({questions ,classValue}) {
 console.log(questions);
+console.log(classValue);
+const className = [classes['slides'],classes[classValue]].join('') ;
     return (
-        <Main>
+        <div className={className}>
             
         {questions.map((question, index)=>{
            
            return <Multiple key={index} question={question} index={index}/>
         })}
 
-        </Main>
+        </div>
     );
 }
 

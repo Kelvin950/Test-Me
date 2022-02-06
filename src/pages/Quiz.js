@@ -16,15 +16,16 @@ const amount =  useSelector(state => state.quiz.amount);
 const difficulty =  useSelector(state=>state.quiz.difficulty);
 const loader=  useSelector(state =>state.ui.loader);
 const  questions =  useSelector(state=>state.quiz.questions);
+const trunc = useSelector(state=>state.quiz.trunc);
 const currentPage =  useSelector(state=>state.pagination.currentPage)
 const postperPage =  useSelector(state=>state.pagination.questionsPerPage)
 const dispatch =  useDispatch();
 const url =  `https://opentdb.com/api.php?amount=${amount}&category=${category}&difficulty=${difficulty}&encode=base64`;
 console.log(loader);
-const indexOfLastTodo = currentPage * postperPage;
-        const indexOfFirstTodo = indexOfLastTodo - postperPage;
-        const currentQuestions =questions.slice(indexOfFirstTodo, indexOfLastTodo);
-
+// const indexOfLastTodo = currentPage * postperPage;
+//         const indexOfFirstTodo = indexOfLastTodo - postperPage;
+//         const currentQuestions =questions.slice(indexOfFirstTodo, indexOfLastTodo);
+        
 const paginate=(number)=>{
     dispatch(paginationActions.changeNumber(number));
 };
@@ -33,13 +34,12 @@ const paginate=(number)=>{
      
        
     dispatch(fetchQuestions(url));
-          
-    
-    
+
 
  } ,[dispatch ,url])
 
-
+console.log(trunc);
+console.log(currentPage);
        if(loader.status ==="pending"){
            return  <Loader/>
        }
@@ -49,10 +49,16 @@ const paginate=(number)=>{
                failed
            </div>
        }
+     
     return (
      <Fragment>
-         <QuizComp questions={currentQuestions}/>
-     <Pagination totalQuestions={questions.length} postperPage={postperPage} paginate={paginate} /> 
+    <div style={{position:"relative" , }}>
+    {trunc.map((_ , i)=>{
+         return <QuizComp key={i} questions={questions.slice(i*postperPage , postperPage*(++i))} classValue ={(i===currentPage)?"active-slide":""}  />
+     })}
+    </div>
+         {/* <QuizComp questions={questions}/> */}
+     <Pagination totalQuestions={questions.length} checked="true" postperPage={postperPage} paginate={paginate} /> 
      </Fragment>   
         
     

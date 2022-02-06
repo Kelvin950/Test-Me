@@ -1,26 +1,39 @@
-const pageNumbers = [];
-
+import {useSelector , useDispatch} from 'react-redux';
+import {paginationActions} from '../store/pagination'
 
 function Pagination({totalQuestions ,postperPage ,paginate}) {
-        
-    for(let i=1;i<=Math.ceil(totalQuestions/postperPage);i++){
-        pageNumbers.push(i);
-    };
+    const currentPage =  useSelector(state=>state.pagination.currentPage); 
+    const trunc = useSelector(state=>state.quiz.trunc);
+    const dispatch =  useDispatch();
+   function showPrevSlideHandler(e){
+              e.preventDefault();
+              dispatch(paginationActions.showPrevSlide());
+    }
+
+   function showNextSlideHandler(e){
+        e.preventDefault();
+        dispatch(paginationActions.showNextSlide());
+}
+
     return (  
         <nav>
             <ul className="pagination">
-                {
-                    pageNumbers.map(number=>{
-                        return <li key={number}  className="page-item">
-                            <a  href="!#" onClick={(e)=>{
-                                e.preventDefault();
-                                    paginate(number)
-                            }} className="page-link">
-                                {number}
+                
+            {
+                currentPage >1 &&   <li className="page-item">
+                            <a  href="!#"  onClick={showPrevSlideHandler} className="page-link">
+                            Prev
                             </a>
                         </li>
-                    })
-                }
+            }
+                     {
+                         (currentPage >0 && currentPage !== trunc.length) &&    <li className="page-item">
+                            <a  href="!#"  onClick={showNextSlideHandler} className="page-link">
+                                Next
+                            </a>
+                        </li>
+                     }
+                
             </ul>
         </nav>
     );

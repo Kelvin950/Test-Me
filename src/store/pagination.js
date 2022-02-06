@@ -15,6 +15,12 @@ const paginationSlice = createSlice({
     reducers:{
         changeNumber(state , action){
             state.currentPage =  action.payload
+        },
+        showNextSlide(state){
+            ++state.currentPage;
+        },
+        showPrevSlide(state){
+            --state.currentPage;
         }
     }
 }) ;

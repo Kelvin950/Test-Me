@@ -1,19 +1,20 @@
-import { Fragment } from 'react';
+
 import  Possible from './Possible'
 import classes from './QuizComp.module.css';
 function Multiple({question ,index}) {
     return ( 
            
-     <Fragment>
+ 
          <div className={classes.questions} >
-            {++index}. {question.question}
-         </div>
+            {question.id}. {question.question}
+       
          <div className={classes.answer}>
              {question.incorrect_answers.map((q , i)=>{
-                 return <Possible key={i} name={index} value={q}   />
+                 return <Possible key={i} name={question.id} answer ={question.correct_answer} value={q}   />
              })}
          </div>
-     </Fragment>
+         </div>
+ 
     
 
      );
