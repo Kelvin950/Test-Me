@@ -6,5 +6,5 @@ The App calls quiz data from an external api.
 I was testing my knowledge on  redux and action creators (thunk).
 Project is deployed on netlify 
 
-#
+# visit https://test-mev1.netlify.app/home
 
