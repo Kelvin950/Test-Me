@@ -1,7 +1,6 @@
 
 import Multiple from './Multiple'
-import Main from '../main/Main'
-import { Fragment } from 'react';
+
 import classes from './QuizComp.module.css'
 function QuizComp({questions ,classValue}) {
 console.log(questions);

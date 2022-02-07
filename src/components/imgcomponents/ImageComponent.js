@@ -1,5 +1,5 @@
 import classes from '../Home.module.css';
-import {useHistory , useLocation} from 'react-router-dom'
+import {useHistory } from 'react-router-dom'
 function ImageComponents(props) {
 const history  = useHistory();
     function onClickHandler (){
